@@ -1,8 +1,8 @@
 #!/bin/bash
 
-tflag=off
-lflag=off
-dflag=off
+tflag=
+lflag=
+dflag=
 
 while [ $# -gt 0 ]
 do
@@ -10,6 +10,7 @@ do
 		-t)	tflag=on
 			manga=$2
 			lastChapter=$3
+			shift
 			shift
 			shift
 			break;;
@@ -22,3 +23,22 @@ do
 
 	shift
 done
+
+if [ tflag ]
+then
+	code=`curl -s -L -w %{http_code} -o /dev/null www.mangareader.net/$manga`
+	
+	if [ $code == "404" ]
+	then
+		echo "Manga : \"$manga\" not found. Are u sure it exists in the mangareader database?"
+		exit 1
+	fi
+
+	if ! [ -f mangas ]
+	then
+		touch mangas
+	fi
+
+	echo $manga >> mangas
+
+fi
