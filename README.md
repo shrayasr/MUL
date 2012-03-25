@@ -8,7 +8,6 @@ MUL is the Manga Tracker that all you geeks out there have been looking for . It
 
 On the backend , it gets data off off [mangareader](http://mangareader.net)
 
------
 
 ##USAGE
 
@@ -27,7 +26,6 @@ On the backend , it gets data off off [mangareader](http://mangareader.net)
 #####Deleting
 	$ ./MUL -d naruto
 
----
 
 ##CREDITS
 
