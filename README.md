@@ -17,7 +17,9 @@ On the backend , it gets data off off [mangareader](http://mangareader.net)
 	
 #####Listing
 	$ ./MUL -l
-	Naruto | Bleach | One Piece
+	Naruto : 579
+	Bleach : 485
+	One Piece : 661
 	
 #####Checking
 	$ ./MUL
