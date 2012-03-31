@@ -13,7 +13,7 @@ On the backend , it gets data off off [mangareader](http://mangareader.net)
 
 #####Tracking
 	$ ./MUL -t naruto 579
-	Gotcha! Manga: Naruto | Last chapter read: 579
+	$
 	
 #####Listing
 	$ ./MUL -l
@@ -27,6 +27,10 @@ On the backend , it gets data off off [mangareader](http://mangareader.net)
 	
 #####Deleting
 	$ ./MUL -d naruto
+	
+	
+##TODO
+* **MAKE IT FASTER!!!**
 
 
 ##CREDITS
