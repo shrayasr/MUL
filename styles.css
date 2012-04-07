@@ -1,0 +1,35 @@
+
+*{
+	margin: 0 auto;
+	width: 700px;
+}
+
+body{
+	background-color: #fff;
+}
+
+#results{
+	background-color: #fff;
+	width: 700px;
+	height: 700px;
+	display: none;
+}
+
+#next{
+	left:860px;
+	top:350px;
+	width:100px;
+}
+
+#prev{
+	left:40px;
+	top:350px;
+	width:100px;
+}
+
+.thumb{
+	background-color: #444;
+	width: 700px;
+	height: 700px;
+	display: block;
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+<script type="text/javascript"></script>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		alert("ready");		
+		
+	});
+	var errorFlag = false;
+	function handleError(msg, parent){
+		$('img').error(function() {
+		  	$(this).hide();
+		  	errorFlag = true;
+			alert(msg);
+	  });
+		if(parent === "prev"){
+				$('#prev').hide();
+				if(currFileName == null){
+					alert("select manga");
+					return 1;
+				}
+			} else if(parent ==="next"){
+				$('#next').hide();
+				if(currFileName == null){
+					alert("select manga");
+					return 1;
+				}
+			}
+	}
+
+	var mangaFile;
+	var currFileName;
+	function handleFileChange(){	
+		var fileList = document.getElementById('files');
+		mangaFile = fileList.files[0];
+
+				var reader = new FileReader();
+				 reader.onload = loadFile();
+				 reader.onloadend = function(){
+				 	$('#next').show();
+				 	$('#prev').show();
+				 }
+	      		function loadFile() {
+			        function changeFile(e) {
+			          // Render thumbnail.
+			          var span = document.getElementById('results');
+			          var targetFile = e.fileName;
+			          currFileName = targetFile;
+          				span.outerHTML = '<img id="results" src="'+ targetFile + '"onclick="nextManga()"/>'
+          				$('#results').css('display','block');
+			        }
+			        changeFile(mangaFile);
+	      		}
+      			reader.readAsDataURL(mangaFile);
+				
+	}
+
+	function nextManga(){
+		if(currFileName != null){
+			errorFlag = false;
+			var fileName = currFileName;
+		var parts = fileName.split('.');
+		var part1 = parts[0];
+		part1 = parseInt(part1) +1;
+		var newFileName = part1+"."+parts[1];
+		// Render new thumbnail.
+		var span = document.getElementById('results');
+          				span.outerHTML = '<img id="results" src="'+ newFileName + '"/>'
+          				$('#results').css('display','block');
+         currFileName = newFileName;	
+         handleError("Error");
+         if(errorFlag){
+
+         }
+		} else{
+			handleError("Select first manga", "next");
+		}
+			          // document.getElementById('result').insertBefore(span, null);
+	}
+	
+	function previousManga(){
+		if(currFileName != null){
+			var fileName = currFileName;
+		var parts = fileName.split('.');
+		var part1 = parts[0];
+		part1 = parseInt(part1) -1;
+		var newFileName = part1+"."+parts[1];
+		// Render new thumbnail.
+		var span = document.getElementById('results');
+          				span.outerHTML = '<img id="results" src="'+ newFileName + '"/>'
+          				$('#results').css('display','block');
+         currFileName = newFileName;	
+         handleError("Error");
+		} else{
+			handleError("Select first manga", "prev");
+		}
+	}		        
+		
+</script>
+
+</head>
+	<body>
+		<p>hello manga</p>
+		<div id="manga_image">
+			
+			<input type="file" id="files" onchange="handleFileChange()"/>
+			<input type="button" value="next" id="next" onclick="nextManga()">
+			<img id="results" src="" onclick="nextManga()">
+			<input type="button" value="previous" id="prev" onclick="previousManga()">
+		</div>
+	</body>
+</html>
